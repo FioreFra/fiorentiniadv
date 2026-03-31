@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Sere&amp;You — Moda che funziona davvero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+    button, input { font-family: inherit; }
+    img, svg { display: block; max-width: 100%; }
+
+    /* ── TOKENS ── */
+    :root {
+      --purple: #8B3FC8;
+      --purple-light: #EDD9FF;
+      --purple-bg: #FAF0FF;
+      --purple-quiz: #C97FFF;
+      --black: #1a1a1a;
+      --border: 1.5px solid #1a1a1a;
+      --pad-x: clamp(1rem, 4vw, 2.5rem);
+    }
+
+    /* ── ANNOUNCEMENT BAR ── */
+    .ann {
+      background: var(--purple);
+      color: #fff;
+      text-align: center;
+      padding: 0.55rem var(--pad-x);
+      font-size: clamp(11px, 2.5vw, 13px);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ann-sep { opacity: 0.5; margin: 0 0.6em; }
+
+    /* ── NAV ── */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem var(--pad-x);
+      border-bottom: var(--border);
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      gap: 1rem;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(22px, 5vw, 28px);
+      font-weight: 400;
+      color: var(--black);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--purple); }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--black);
+    }
+    .nav-links li { cursor: pointer; white-space: nowrap; }
+    .nav-links li:hover { color: var(--purple); }
+    .nav-right {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .nav-search { font-size: 13px; font-weight: 500; cursor: pointer; }
+    .nav-cart {
+      background: var(--black);
+      color: #fff;
+      padding: 0.45rem 1rem;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      border: none;
+    }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--black); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--purple-bg);
+      border-bottom: var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 440px;
+      overflow: hidden;
+    }
+    .hero-left {
+      padding: clamp(2rem, 5vw, 3.5rem) var(--pad-x);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: var(--border);
+    }
+    .tag {
+      display: inline-block;
+      background: var(--purple);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      margin-bottom: 1.2rem;
+      width: fit-content;
+    }
+    .hero-title {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--black);
+      margin-bottom: 1rem;
+    }
+    .hero-title em { color: var(--purple); font-style: normal; }
+    .hero-sub {
+      font-size: clamp(14px, 2vw, 15px);
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgba(26,26,26,0.65);
+      margin-bottom: 2rem;
+      max-width: 400px;
+    }
+    .btn-row { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .btn-purple {
+      background: var(--purple);
+      color: #fff;
+      padding: 0.9rem 1.8rem;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 2px solid var(--purple);
+      letter-spacing: 0.03em;
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--black);
+      padding: 0.9rem 1.8rem;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 2px solid var(--black);
+      letter-spacing: 0.03em;
+    }
+    .btn-purple:hover { background: #7A34B0; border-color: #7A34B0; }
+    .btn-outline:hover { background: rgba(26,26,26,0.05); }
+    .hero-right {
+      background: var(--purple-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 300px;
+    }
+    .hero-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: var(--black);
+      color: #fff;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+    .hero-badge strong { font-size: 20px; display: block; }
+
+    /* ── STRIP ── */
+    .strip {
+      border-bottom: var(--border);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .strip::-webkit-scrollbar { display: none; }
+    .strip-inner {
+      display: flex;
+      min-width: max-content;
+    }
+    .strip-item {
+      padding: 0.85rem 1.5rem;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-right: var(--border);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: default;
+    }
+    .strip-dot {
+      width: 6px; height: 6px;
+      background: var(--purple);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── OFFERTA ── */
+    .offerta {
+      background: var(--purple);
+      color: #fff;
+      padding: clamp(1.8rem, 4vw, 2.5rem) var(--pad-x);
+      border-bottom: var(--border);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+    .offerta-eye {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 0.4rem;
+    }
+    .offerta-title {
+      font-size: clamp(20px, 3.5vw, 28px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.7rem;
+    }
+    .offerta-sub {
+      font-size: 14px;
+      opacity: 0.85;
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+    }
+    .btn-white {
+      background: #fff;
+      color: var(--purple);
+      padding: 0.75rem 1.8rem;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 2px solid #fff;
+      display: inline-block;
+    }
+    .btn-white:hover { background: rgba(255,255,255,0.9); }
+    .countdown { display: flex; gap: 0.7rem; }
+    .cd-box {
+      background: rgba(255,255,255,0.15);
+      padding: 0.8rem 1rem;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.3);
+      min-width: 64px;
+    }
+    .cd-num { font-size: 28px; font-weight: 700; line-height: 1; display: block; }
+    .cd-label { font-size: 10px; letter-spacing: 0.1em; opacity: 0.7; margin-top: 4px; display: block; text-transform: uppercase; }
+
+    /* ── SECTION HEADER ── */
+    .sec-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1.5rem var(--pad-x) 1.2rem;
+      border-bottom: var(--border);
+    }
+    .sec-title { font-size: clamp(18px, 3vw, 22px); font-weight: 700; }
+    .sec-link { font-size: 13px; font-weight: 700; text-decoration: underline; cursor: pointer; white-space: nowrap; }
+
+    /* ── PRODUCTS ── */
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: var(--border);
+    }
+    .prod {
+      border-right: var(--border);
+    }
+    .prod:last-child { border-right: none; }
+    .prod-img {
+      aspect-ratio: 3/4;
+      background: #F5F0FA;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: var(--border);
+    }
+    .prod-badge {
+      position: absolute;
+      top: 0.8rem;
+      left: 0;
+      background: var(--purple);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+    }
+    .prod-info { padding: clamp(0.8rem, 2vw, 1.2rem); }
+    .prod-name { font-size: clamp(13px, 2vw, 15px); font-weight: 700; margin-bottom: 0.25rem; }
+    .prod-desc { font-size: 12px; color: rgba(26,26,26,0.55); margin-bottom: 0.7rem; line-height: 1.5; }
+    .prod-row { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .prod-price { font-size: clamp(14px, 2vw, 16px); font-weight: 700; white-space: nowrap; }
+    .prod-add {
+      background: var(--black);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      border: none;
+    }
+    .prod-add:hover { background: #333; }
+
+    /* ── SERENA ── */
+    .serena {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: var(--border);
+    }
+    .serena-img {
+      background: var(--purple-light);
+      border-right: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 360px;
+      position: relative;
+      overflow: hidden;
+    }
+    .serena-sticker {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      background: var(--purple);
+      color: #fff;
+      padding: 0.5rem 0.9rem;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .serena-text {
+      padding: clamp(2rem, 5vw, 3rem) var(--pad-x);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .serena-title {
+      font-size: clamp(24px, 3.5vw, 32px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .serena-title em { color: var(--purple); font-style: normal; }
+    .serena-body {
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(26,26,26,0.7);
+      margin-bottom: 1.5rem;
+    }
+    .serena-firma {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      color: var(--purple);
+      font-style: italic;
+    }
+
+    /* ── QUIZ ── */
+    .quiz {
+      background: var(--black);
+      color: #fff;
+      padding: clamp(2rem, 5vw, 3rem) var(--pad-x);
+      border-bottom: var(--border);
+      text-align: center;
+    }
+    .quiz-title { font-size: clamp(22px, 4vw, 30px); font-weight: 700; margin-bottom: 0.6rem; line-height: 1.2; }
+    .quiz-title em { color: var(--purple-quiz); font-style: normal; }
+    .quiz-sub { font-size: 14px; opacity: 0.6; margin-bottom: 2rem; }
+    .quiz-opts {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .quiz-opt {
+      padding: 0.75rem 1.4rem;
+      border: 2px solid rgba(255,255,255,0.3);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #fff;
+      letter-spacing: 0.04em;
+      background: transparent;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .quiz-opt:hover { border-color: var(--purple-quiz); color: var(--purple-quiz); }
+
+    /* ── NEWSLETTER ── */
+    .news {
+      padding: clamp(2rem, 5vw, 3rem) var(--pad-x);
+      text-align: center;
+      background: var(--purple-bg);
+      border-bottom: var(--border);
+    }
+    .news-title { font-size: clamp(20px, 4vw, 26px); font-weight: 700; margin-bottom: 0.5rem; }
+    .news-sub { font-size: 14px; color: rgba(26,26,26,0.6); margin-bottom: 1.5rem; line-height: 1.6; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .news-form { display: flex; max-width: 420px; margin: 0 auto; }
+    .news-input {
+      flex: 1;
+      padding: 0.85rem 1rem;
+      border: 2px solid var(--black);
+      border-right: none;
+      font-size: 14px;
+      outline: none;
+      background: #fff;
+      min-width: 0;
+    }
+    .news-input::placeholder { color: rgba(26,26,26,0.35); }
+    .news-btn {
+      background: var(--purple);
+      color: #fff;
+      padding: 0 1.4rem;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 2px solid var(--purple);
+      white-space: nowrap;
+      letter-spacing: 0.04em;
+    }
+    .news-btn:hover { background: #7A34B0; }
+    .news-fine { font-size: 11px; color: rgba(26,26,26,0.35); margin-top: 0.8rem; }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 1.5rem var(--pad-x);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(26,26,26,0.4);
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      color: var(--black);
+      font-weight: 400;
+    }
+    .footer-logo span { color: var(--purple); }
+    .footer-links { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+
+    /* ── MOBILE DRAWER (hidden nav) ── */
+    .nav-drawer {
+      display: none;
+      flex-direction: column;
+      background: #fff;
+      border-bottom: var(--border);
+      padding: 1rem var(--pad-x);
+      gap: 0.2rem;
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      padding: 0.7rem 0;
+      border-bottom: 0.5px solid rgba(26,26,26,0.1);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .nav-drawer a:last-child { border-bottom: none; }
+
+    /* ── RESPONSIVE ── */
+
+    /* Tablet: 641–900px */
+    @media (max-width: 900px) {
+      .nav-links { gap: 1rem; font-size: 12px; }
+      .hero { min-height: 360px; }
+      .hero-title { font-size: clamp(28px, 5vw, 40px); }
+      .offerta { grid-template-columns: 1fr; }
+      .countdown { justify-content: flex-start; }
+    }
+
+    /* Mobile: ≤640px */
+    @media (max-width: 640px) {
+      /* Nav */
+      .nav-links, .nav-search { display: none; }
+      .nav-hamburger { display: flex; }
+
+      /* Hero: single column */
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { border-right: none; border-bottom: var(--border); }
+      .hero-right { min-height: 240px; border-top: none; }
+
+      /* Strip: horizontal scroll */
+      .strip-inner { min-width: max-content; }
+
+      /* Offerta: stacked */
+      .offerta { grid-template-columns: 1fr; }
+      .countdown { flex-wrap: wrap; }
+      .cd-box { flex: 1; min-width: 56px; }
+
+      /* Products: 2 columns on mobile */
+      .prod-grid { grid-template-columns: 1fr 1fr; }
+      .prod:nth-child(2) { border-right: none; }
+      .prod:nth-child(3) {
+        grid-column: 1 / -1;
+        border-right: none;
+        border-top: var(--border);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .prod:nth-child(3) .prod-img { border-bottom: none; border-right: var(--border); }
+
+      /* Serena: stacked */
+      .serena { grid-template-columns: 1fr; }
+      .serena-img { border-right: none; border-bottom: var(--border); min-height: 260px; }
+
+      /* Quiz opts: 2x2 grid */
+      .quiz-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+
+      /* Newsletter: stacked input */
+      .news-form { flex-direction: column; }
+      .news-input { border-right: 2px solid var(--black); border-bottom: none; }
+      .news-btn { padding: 0.85rem; border-left: 2px solid var(--purple); }
+
+      /* Footer */
+      .footer { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+
+    /* Very small: ≤360px */
+    @media (max-width: 360px) {
+      .hero-title { font-size: 28px; }
+      .btn-row { flex-direction: column; }
+      .btn-purple, .btn-outline { text-align: center; }
+      .cd-box { min-width: 48px; padding: 0.6rem 0.5rem; }
+      .cd-num { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="ann">
+  Spedizione gratuita sopra i 59&euro;<span class="ann-sep">&middot;</span>Nuovi arrivi ogni settimana<span class="ann-sep">&middot;</span>Reso a carico del cliente
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">Sere<span>&amp;</span>You</div>
+  <ul class="nav-links">
+    <li>Novit&agrave;</li>
+    <li>Tops</li>
+    <li>Pantaloni</li>
+    <li>Outerwear</li>
+    <li>Chi siamo</li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-search">Cerca</span>
+    <button class="nav-cart">Carrello (0)</button>
+    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="drawer">
+  <a>Novit&agrave;</a>
+  <a>Tops</a>
+  <a>Pantaloni</a>
+  <a>Outerwear</a>
+  <a>Chi siamo</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="tag">Nuova collezione Primavera 2026</div>
+    <h1 class="hero-title">
+      Vestirsi bene<br>non &egrave; un<br><em>lavoro.</em>
+    </h1>
+    <p class="hero-sub">
+      Lo faccio io per te. Ogni settimana vado al Centergross, provo tutto, tengo solo quello che vale davvero la pena. Tu scegli. Ti arriva a casa. Fine.
+    </p>
+    <div class="btn-row">
+      <button class="btn-purple">Scopri la collezione</button>
+      <button class="btn-outline">Chi sono</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <svg width="200" height="280" viewBox="0 0 200 280" fill="none" aria-hidden="true">
+      <rect x="60" y="20" width="80" height="220" rx="3" fill="#C9A0E8"/>
+      <path d="M60 75 Q48 70 32 85 L32 170 Q32 176 38 176 L60 170 Z" fill="#B889D8"/>
+      <path d="M140 75 Q152 70 168 85 L168 170 Q168 176 162 176 L140 170 Z" fill="#B889D8"/>
+      <rect x="68" y="160" width="64" height="80" rx="2" fill="#BE94E0"/>
+      <rect x="85" y="20" width="30" height="10" rx="2" fill="#C0A0D8"/>
+      <line x1="100" y1="40" x2="100" y2="230" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+    </svg>
+    <div class="hero-badge">
+      <strong>-20%</strong>
+      su tutto<br>oggi
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-item"><span class="strip-dot"></span> Selezionato a mano</div>
+    <div class="strip-item"><span class="strip-dot"></span> Nuovi arrivi ogni settimana</div>
+    <div class="strip-item"><span class="strip-dot"></span> Taglie reali su corpi reali</div>
+    <div class="strip-item"><span class="strip-dot"></span> Reso facile</div>
+    <div class="strip-item"><span class="strip-dot"></span> Fatto con cura</div>
+  </div>
+</div>
+
+<!-- OFFERTA -->
+<section class="offerta">
+  <div>
+    <div class="offerta-eye">Offerta della settimana</div>
+    <div class="offerta-title">Blazer linen mix: solo per 3 giorni a &euro;55</div>
+    <div class="offerta-sub">Ne ho presi solo 4. Quando finiscono, finiscono. Non mi sono inventata niente.</div>
+    <button class="btn-white">Lo voglio</button>
+  </div>
+  <div class="countdown">
+    <div class="cd-box"><span class="cd-num" id="cdH">02</span><span class="cd-label">Ore</span></div>
+    <div class="cd-box"><span class="cd-num" id="cdM">47</span><span class="cd-label">Min</span></div>
+    <div class="cd-box"><span class="cd-num" id="cdS">33</span><span class="cd-label">Sec</span></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<div class="sec-head">
+  <div class="sec-title">Nuovi arrivi</div>
+  <div class="sec-link">Vedi tutto &rarr;</div>
+</div>
+
+<div class="prod-grid">
+  <div class="prod">
+    <div class="prod-img">
+      <div class="prod-badge">Nuovo</div>
+      <svg width="90" height="120" viewBox="0 0 90 120" fill="none" aria-hidden="true">
+        <path d="M22 12 Q22 6 45 6 Q68 6 68 12 L74 34 L62 34 L62 108 L28 108 L28 34 L16 34 Z" fill="#C9A0E8"/>
+        <path d="M16 34 Q5 31 3 51 L5 82 Q5 88 11 88 L28 84 L28 34 Z" fill="#BE94E0"/>
+        <path d="M74 34 Q85 31 87 51 L85 82 Q85 88 79 88 L62 84 L62 34 Z" fill="#BE94E0"/>
+      </svg>
+    </div>
+    <div class="prod-info">
+      <div class="prod-name">Camicia Oxford oversize</div>
+      <div class="prod-desc">Taglia unica, sta bene su tutto. Promesso.</div>
+      <div class="prod-row">
+        <div class="prod-price">&euro; 45,00</div>
+        <button class="prod-add">+ Aggiungi</button>
+      </div>
+    </div>
+  </div>
+  <div class="prod">
+    <div class="prod-img">
+      <svg width="90" height="120" viewBox="0 0 90 120" fill="none" aria-hidden="true">
+        <path d="M28 6 L62 6 L68 108 L22 108 Z" fill="#C9A0E8"/>
+        <line x1="45" y1="6" x2="45" y2="108" stroke="rgba(255,255,255,0.4)" stroke-width="0.5"/>
+        <rect x="25" y="36" width="40" height="1" fill="rgba(255,255,255,0.3)"/>
+        <rect x="25" y="66" width="40" height="1" fill="rgba(255,255,255,0.3)"/>
+      </svg>
+    </div>
+    <div class="prod-info">
+      <div class="prod-name">Pantaloni palazzo</div>
+      <div class="prod-desc">Fluidi, comodi, eleganti. La combo rara.</div>
+      <div class="prod-row">
+        <div class="prod-price">&euro; 55,00</div>
+        <button class="prod-add">+ Aggiungi</button>
+      </div>
+    </div>
+  </div>
+  <div class="prod">
+    <div class="prod-img">
+      <div class="prod-badge" style="background:var(--black)">Ultimi 2</div>
+      <svg width="90" height="120" viewBox="0 0 90 120" fill="none" aria-hidden="true">
+        <path d="M16 24 Q45 9 74 24 L80 108 L10 108 Z" fill="#C9A0E8"/>
+        <path d="M16 24 Q5 26 3 40 L8 58 L16 56 L16 24 Z" fill="#BE94E0"/>
+        <path d="M74 24 Q85 26 87 40 L82 58 L74 56 L74 24 Z" fill="#BE94E0"/>
+        <ellipse cx="45" cy="22" rx="14" ry="7" fill="#D4B8F0"/>
+      </svg>
+    </div>
+    <div class="prod-info">
+      <div class="prod-name">Maglione over cachemire mix</div>
+      <div class="prod-desc">Morbidissimo. Ne ho preso solo uno per taglia.</div>
+      <div class="prod-row">
+        <div class="prod-price">&euro; 62,00</div>
+        <button class="prod-add">+ Aggiungi</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERENA -->
+<section class="serena">
+  <div class="serena-img">
+    <svg width="160" height="200" viewBox="0 0 160 200" fill="none" aria-hidden="true">
+      <circle cx="80" cy="65" r="42" fill="#C9A0E8"/>
+      <circle cx="80" cy="63" r="30" fill="#D4B8F0"/>
+      <ellipse cx="80" cy="185" rx="65" ry="50" fill="#C9A0E8"/>
+      <circle cx="80" cy="60" r="9" fill="#8B3FC8" opacity="0.5"/>
+      <ellipse cx="80" cy="60" rx="4" ry="6" fill="#6A2E9E"/>
+    </svg>
+    <div class="serena-sticker">Ciao, sono Serena &#128075;</div>
+  </div>
+  <div class="serena-text">
+    <div class="tag">La nostra storia</div>
+    <h2 class="serena-title">Ho fatto la barista<br>per anni.<br><em>Ora vendo vestiti.</em></h2>
+    <p class="serena-body">
+      E no, non &egrave; cos&igrave; strano come sembra. Fare la barista vuol dire vedere 200 persone al giorno, ascoltarle, capire cosa le fa stare bene. Ho imparato pi&ugrave; sulla moda dai banconi del bar che da qualsiasi magazine.<br><br>
+      Ogni settimana vado al Centergross, provo tutto, tengo solo quello che comprerei davvero. Niente roba &ldquo;che sembrava carina sul manichino&rdquo;.
+    </p>
+    <div class="serena-firma">&mdash; Serena, fondatrice</div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz">
+  <h2 class="quiz-title">Che tipo di <em>vestifiga</em> sei?</h2>
+  <p class="quiz-sub">Rispondi in 30 secondi e ti dico cosa comprare questa settimana.</p>
+  <div class="quiz-opts">
+    <button class="quiz-opt">Casual pigra</button>
+    <button class="quiz-opt">Smart ma comoda</button>
+    <button class="quiz-opt">Sempre elegante</button>
+    <button class="quiz-opt">Dipende dall&rsquo;umore</button>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="news">
+  <h2 class="news-title">Entra nel gruppo &#128027;</h2>
+  <p class="news-sub">Iscriviti e ottieni il 10% sul primo ordine. Nuovi arrivi ogni settimana, prima di tutti.</p>
+  <div class="news-form">
+    <input class="news-input" type="email" placeholder="la tua email" aria-label="Email">
+    <button class="news-btn">Voglio il 10%</button>
+  </div>
+  <p class="news-fine">Niente spam. Solo roba bella, lo giuro.</p>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">Sere<span>&amp;</span>You</div>
+  <div>&copy; 2026 &middot; Fatto con gusto dall&rsquo;Appennino bolognese</div>
+  <div class="footer-links">
+    <span>Instagram</span>
+    <span>TikTok</span>
+    <span>Privacy</span>
+  </div>
+</footer>
+
+<script>
+  // Countdown
+  let secs = 2 * 3600 + 47 * 60 + 33;
+  const cdH = document.getElementById('cdH');
+  const cdM = document.getElementById('cdM');
+  const cdS = document.getElementById('cdS');
+  setInterval(() => {
+    if (secs <= 0) return;
+    secs--;
+    cdH.textContent = String(Math.floor(secs / 3600)).padStart(2, '0');
+    cdM.textContent = String(Math.floor((secs % 3600) / 60)).padStart(2, '0');
+    cdS.textContent = String(secs % 60).padStart(2, '0');
+  }, 1000);
+
+  // Mobile menu
+  function toggleMenu() {
+    const drawer = document.getElementById('drawer');
+    drawer.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
