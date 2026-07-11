@@ -216,6 +216,8 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   border-bottom: 1.5px solid var(--black);
   display: flex;
   flex-direction: column;
+  text-decoration: none;
+  color: inherit;
 }
 
 .look-card__media {
