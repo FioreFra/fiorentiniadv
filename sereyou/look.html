@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Look Ufficio Cool — Sere&amp;You</title>
+<title>Look — Sere&amp;You</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Cormorant+Garamond:ital,wght@1,500;1,600;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
@@ -28,56 +28,28 @@
     <span class="crumb__sep">/</span>
     <a href="index.html#look-grid">I miei look</a>
     <span class="crumb__sep">/</span>
-    <span class="crumb__current">Look Ufficio Cool</span>
+    <span class="crumb__current" id="crumb-current">Look</span>
   </div>
 
   <div class="look-main">
     <div>
-      <div class="look-media placeholder-img">
-        foto grande outfit
-        <span class="look-card__badge">Carosello TikTok</span>
-      </div>
-      <a href="#" class="tiktok-link">Guarda il carosello su TikTok ↗</a>
+      <div class="look-media placeholder-img" id="look-photo">foto grande outfit</div>
+      <a href="#" class="tiktok-link" id="look-tiktok-link" target="_blank" rel="noopener">Guarda il carosello su TikTok ↗</a>
     </div>
 
     <div class="look-copy">
       <div>
-        <span class="tag">Ufficio smart</span>
-        <h1>Look Ufficio Cool</h1>
+        <span class="tag" id="look-tag"></span>
+        <h1 id="look-title">Look</h1>
       </div>
 
       <div class="look-caption">
-        <p>Questo è il mio "ufficio ma non voglio sembrare in ufficio". Il blazer fa tutto il lavoro, sotto ci sta comoda anche una t-shirt semplice. L'ho trovato scrollando un sito che seguo da un po', vi ho fatto il carosello perché mi sembrava troppo bello per restarmene solo io. Taglie e prezzi qui sotto.</p>
+        <p id="look-caption"></p>
       </div>
 
       <div class="look-items">
         <h2>Cosa indosso</h2>
-        <div class="item-list">
-          <div class="item-row">
-            <div class="item-thumb placeholder-img">foto capo</div>
-            <div>
-              <div class="item-name">Blazer strutturato color panna</div>
-              <div class="item-price">€ 79,90</div>
-            </div>
-            <a href="#" class="link-underline item-link">Vedi il prodotto →</a>
-          </div>
-          <div class="item-row">
-            <div class="item-thumb placeholder-img">foto capo</div>
-            <div>
-              <div class="item-name">T-shirt basic girocollo</div>
-              <div class="item-price">€ 14,90</div>
-            </div>
-            <a href="#" class="link-underline item-link">Vedi il prodotto →</a>
-          </div>
-          <div class="item-row">
-            <div class="item-thumb placeholder-img">foto capo</div>
-            <div>
-              <div class="item-name">Pantalone sartoriale a palazzo</div>
-              <div class="item-price">€ 54,90</div>
-            </div>
-            <a href="#" class="link-underline item-link">Vedi il prodotto →</a>
-          </div>
-        </div>
+        <div class="item-list" id="item-list"></div>
       </div>
 
       <p class="affiliate-note">I link ai prodotti sono affiliati: acquistando tramite questi link non spendi nulla in più, ma ci guadagno una piccola percentuale.</p>
@@ -111,6 +83,9 @@
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="js/sereyou-data.js"></script>
+<script src="js/look.js"></script>
 <script src="js/newsletter.js"></script>
 </body>
 </html>

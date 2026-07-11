@@ -40,76 +40,9 @@
   <div id="look-grid" class="looks-wrap">
     <div class="looks-head">
       <h2>I miei look</h2>
-      <span>6 look · aggiornati ogni settimana</span>
+      <span id="looks-count">Caricamento…</span>
     </div>
-    <div class="looks-grid">
-      <div class="look-card">
-        <div class="look-card__media placeholder-img">
-          foto outfit
-          <span class="look-card__badge">Carosello TikTok</span>
-        </div>
-        <div class="look-card__body">
-          <span class="tag">Ufficio smart</span>
-          <h3 class="look-card__title">Look Ufficio Cool</h3>
-          <a href="look.html" class="link-underline look-card__link">Guarda il look →</a>
-        </div>
-      </div>
-      <div class="look-card">
-        <div class="look-card__media placeholder-img">
-          foto outfit
-          <span class="look-card__badge">Carosello TikTok</span>
-        </div>
-        <div class="look-card__body">
-          <span class="tag">Aperitivo</span>
-          <h3 class="look-card__title">Look Aperitivo Easy</h3>
-          <a href="look.html" class="link-underline look-card__link">Guarda il look →</a>
-        </div>
-      </div>
-      <div class="look-card">
-        <div class="look-card__media placeholder-img">
-          foto outfit
-          <span class="look-card__badge">Carosello TikTok</span>
-        </div>
-        <div class="look-card__body">
-          <span class="tag">Weekend fuori porta</span>
-          <h3 class="look-card__title">Look Weekend Comfy</h3>
-          <a href="look.html" class="link-underline look-card__link">Guarda il look →</a>
-        </div>
-      </div>
-      <div class="look-card">
-        <div class="look-card__media placeholder-img">
-          foto outfit
-          <span class="look-card__badge">Carosello TikTok</span>
-        </div>
-        <div class="look-card__body">
-          <span class="tag">Prima serata</span>
-          <h3 class="look-card__title">Look Serata Statement</h3>
-          <a href="look.html" class="link-underline look-card__link">Guarda il look →</a>
-        </div>
-      </div>
-      <div class="look-card">
-        <div class="look-card__media placeholder-img">
-          foto outfit
-          <span class="look-card__badge">Carosello TikTok</span>
-        </div>
-        <div class="look-card__body">
-          <span class="tag">Università</span>
-          <h3 class="look-card__title">Look Layered Uni</h3>
-          <a href="look.html" class="link-underline look-card__link">Guarda il look →</a>
-        </div>
-      </div>
-      <div class="look-card">
-        <div class="look-card__media placeholder-img">
-          foto outfit
-          <span class="look-card__badge">Carosello TikTok</span>
-        </div>
-        <div class="look-card__body">
-          <span class="tag">Giornata no</span>
-          <h3 class="look-card__title">Look Domenica Cozy</h3>
-          <a href="look.html" class="link-underline look-card__link">Guarda il look →</a>
-        </div>
-      </div>
-    </div>
+    <div class="looks-grid" id="looks-grid"></div>
   </div>
 
   <div id="news" class="news">
@@ -139,6 +72,9 @@
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="js/sereyou-data.js"></script>
+<script src="js/home.js"></script>
 <script src="js/newsletter.js"></script>
 </body>
 </html>
