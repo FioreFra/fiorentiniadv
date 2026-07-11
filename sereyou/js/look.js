@@ -74,8 +74,7 @@
     document.getElementById('look-title').textContent = look.nome;
     document.getElementById('look-caption').textContent = look.caption;
 
-    const tiktokLink = document.getElementById('look-tiktok-link');
-    tiktokLink.href = look.link_carosello || '#';
+   // link TikTok rimosso: non presente in questa versione del sito
 
     document.getElementById('look-photo').innerHTML =
       mainPhotoHtml(look.immagini, look.nome) +
