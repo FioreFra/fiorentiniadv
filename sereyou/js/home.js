@@ -25,22 +25,22 @@
       grid.innerHTML = '<p style="grid-column:1/-1;padding:32px;font:400 14px \'DM Sans\',sans-serif;color:rgba(0,0,0,.6);">Nessun look pubblicato al momento. Torna a trovarci presto!</p>';
       return;
     }
-
     grid.innerHTML = ids.map((id) => {
-      const look = looks[id];
-      return `
-        <div class="look-card">
-          <div class="look-card__media placeholder-img">
-            ${mediaHtml(look.immagini, look.nome)}
-            <span class="look-card__badge">Carosello TikTok</span>
-          </div>
-          <div class="look-card__body">
-            <span class="tag">${escapeHtml(look.occasione)}</span>
-            <h3 class="look-card__title">${escapeHtml(look.nome)}</h3>
-            <a href="look.html?id=${encodeURIComponent(id)}" class="link-underline look-card__link">Guarda il look →</a>
-          </div>
-        </div>`;
-    }).join('');
+  const look = looks[id];
+  return `
+    <a href="look.html?id=${encodeURIComponent(id)}" class="look-card">
+      <div class="look-card__media placeholder-img">
+        ${mediaHtml(look.immagini, look.nome)}
+        <span class="look-card__badge">Carosello TikTok</span>
+      </div>
+      <div class="look-card__body">
+        <span class="tag">${escapeHtml(look.occasione)}</span>
+        <h3 class="look-card__title">${escapeHtml(look.nome)}</h3>
+        <span class="link-underline look-card__link">Guarda il look →</span>
+      </div>
+    </a>`;
+}).join('');
+
   }
 
   window.addEventListener('DOMContentLoaded', () => {
