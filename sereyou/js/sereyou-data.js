@@ -11,8 +11,8 @@
      continua a funzionare con i dati di esempio qui sotto.
      ═══════════════════════════════════════════════════════════ */
   const CONFIG = {
-    outfitsCsvUrl: 'INCOLLA_QUI_IL_LINK_CSV_OUTFITS',
-    productsCsvUrl: 'INCOLLA_QUI_IL_LINK_CSV_PRODOTTI',
+    outfitsCsvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRUT01FCJOHHyw9j5jgyJZT0imyx_BXlzdk3fStuAbtnKgB4L96JV1NO8Ujavx4yX0IrSRWWys4k2gF/pubhtml?gid=1531995074&single=true',
+    productsCsvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRUT01FCJOHHyw9j5jgyJZT0imyx_BXlzdk3fStuAbtnKgB4L96JV1NO8Ujavx4yX0IrSRWWys4k2gF/pubhtml?gid=1332958666&single=true',
   };
 
   const SAMPLE_PRODUCTS = {
